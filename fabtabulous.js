@@ -21,14 +21,22 @@ var Fabtabs = Class.create({
 		var onLocal = function(event) {
 		  if(this.options.anchorpolicy !== 'allow'){ event.stop(); }
   		var elm = event.findElement("a");
-  		this.activate(elm);
-  		if(this.options.anchorpolicy === 'protect') { window.location.hash = '.'+this.tabID(elm); }
+  		if (elm.href.match(/#(\w.+)/)) {
+  		  this.activate(elm);
+  		  if(this.options.anchorpolicy === 'protect') { window.location.hash = '.'+this.tabID(elm); }
+		  }else {
+  		  document.location = elm.href;
+  	  }
   	};
   	var onRemote = function(event) {
   	  if(this.options.anchorpolicy !== 'allow'){ event.stop(); }
 	    var trig = event.findElement("a");
-    	this.activate(this.tabID(trig));
-    	if(this.options.anchorpolicy === 'protect') { window.location.hash = '.'+this.tabID(elm); }
+	    if (elm.href.match(/#(\w.+)/)) {
+    	  this.activate(this.tabID(trig));
+    	  if(this.options.anchorpolicy === 'protect') { window.location.hash = '.'+this.tabID(elm); }
+    	} else {
+		    document.location = elm.href;
+		  }
 	  }
 		this.element.observe('click', onLocal.bindAsEventListener(this));
 		if(this.options.hover) {
