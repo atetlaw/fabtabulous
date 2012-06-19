@@ -14,11 +14,18 @@ legend {
 }
 #banner {
 	background-color: #7B68EE;
-	height: 700px;
+	height: 79px;
 }
-
-.panel {
+.tabbodypanel {
+  position: relative;
 	clear: both;
+	background-color: #3e3e3e;
+	height: 150px;
+}
+.panel {
+  position: absolute;
+  top: 0;
+  left: 0;
 	display: none;
 	background-color: #3e3e3e;
 	padding: 1em;
